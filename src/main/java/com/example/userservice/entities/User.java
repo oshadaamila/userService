@@ -12,6 +12,7 @@ public class User {
     private String name;
     private String description;
     private String countryOfOrigin;
+    private String cognitoID;
 
     public long getUserID() {
         return userID;
@@ -43,5 +44,14 @@ public class User {
 
     public void setCountryOfOrigin(String countryOfOrigin) {
         this.countryOfOrigin = countryOfOrigin;
+    }
+
+
+    public String getCognitoID() {
+        return cognitoID;
+    }
+
+    public void setCognitoID(String cognitoID) {
+        this.cognitoID = cognitoID;
     }
 }
