@@ -28,7 +28,7 @@ public class UserController {
         return (List<User>) userRepository.findAll();
     }
 
-    @CrossOrigin(origins = "*")
+    //@CrossOrigin(origins = "*")
     @PostMapping
     public User saveUser(@Validated @RequestBody User user) {
         User user1 = userRepository.findByCognitoID(user.getCognitoID());
@@ -68,7 +68,7 @@ public class UserController {
         return objectNode;
     }
 
-    @CrossOrigin(origins = "*")
+    //@CrossOrigin(origins = "*")
     @PostMapping("/update")
     public User updateUser(@Validated @RequestBody User user) {
         User user1 = userRepository.findByCognitoID(user.getCognitoID());

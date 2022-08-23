@@ -16,6 +16,8 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView model) throws Exception {
+
+        //response.addHeader("Access-Control-Allow-Origin", "*");
     }
 
     @Override
@@ -35,6 +37,8 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 //        response.setStatus(502);
 //        System.out.println("Interceptor preHandleCalled");
 //        return false;
+        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Headers", "*");
         return true;
     }
 }
