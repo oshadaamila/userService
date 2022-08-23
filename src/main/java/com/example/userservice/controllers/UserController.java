@@ -28,8 +28,13 @@ public class UserController {
         return (List<User>) userRepository.findAll();
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping
     public User saveUser(@Validated @RequestBody User user) {
+        User user1 = userRepository.findByCognitoID(user.getCognitoID());
+        if (user1 != null) {
+            return user1;
+        }
         return userRepository.save(user);
     }
 
