@@ -68,6 +68,16 @@ public class UserController {
         return objectNode;
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/update")
+    public User updateUser(@Validated @RequestBody User user) {
+        User user1 = userRepository.findByCognitoID(user.getCognitoID());
+        if (user1 != null) {
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
 
 
 }

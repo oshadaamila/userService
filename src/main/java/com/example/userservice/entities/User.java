@@ -9,6 +9,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userID;
+    private String email;
     private String name;
     private String description;
     private String countryOfOrigin;
@@ -53,5 +54,13 @@ public class User {
 
     public void setCognitoID(String cognitoID) {
         this.cognitoID = cognitoID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
