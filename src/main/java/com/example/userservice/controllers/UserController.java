@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +24,6 @@ public class UserController {
     @Autowired
     private ObjectMapper jacksonObjectMapper;
 
-    @GetMapping
-    public List<User> findAllUsers() {
-        return (List<User>) userRepository.findAll();
-    }
-
-    //@CrossOrigin(origins = "*")
     @PostMapping
     public User saveUser(@Validated @RequestBody User user) {
         User user1 = userRepository.findByCognitoID(user.getCognitoID());
@@ -36,17 +31,6 @@ public class UserController {
             return user1;
         }
         return userRepository.save(user);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable(value = "id") long id) {
-        Optional<User> user = userRepository.findById(id);
-
-        if(user.isPresent()) {
-            return ResponseEntity.ok().body(user.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/editor")
@@ -68,7 +52,6 @@ public class UserController {
         return objectNode;
     }
 
-    //@CrossOrigin(origins = "*")
     @PostMapping("/update")
     public User updateUser(@Validated @RequestBody User user) {
         User user1 = userRepository.findByCognitoID(user.getCognitoID());
@@ -78,6 +61,10 @@ public class UserController {
         return null;
     }
 
-
-
+    @GetMapping("/health")
+    public ResponseEntity<String> handleNotifications() {
+        // parse here the values
+        return new ResponseEntity<>("result successful result",
+                HttpStatus.OK);
+    }
 }
