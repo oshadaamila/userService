@@ -39,6 +39,8 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 //        return false;
         response.setHeader("Access-Control-Allow-Origin","*");
         response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Credentials","true");
+        response.setHeader("Content-Type", "application/json");
         return true;
     }
 }
